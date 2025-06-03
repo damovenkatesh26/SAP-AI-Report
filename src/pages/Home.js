@@ -79,31 +79,31 @@ const table = useMaterialReactTable({
   },
   muiTableHeadCellProps: {
     sx: {
-      backgroundColor: "#1976d2",
-      color: "#fff",
+      backgroundColor: "#17a2b8",
+      color: "black",
       fontWeight: "bold",
       '& .MuiTableSortLabel-root': {
-        color: '#fff',
+        color: 'black',
         fill: '#fff',
       },
       '& .MuiTableSortLabel-root.Mui-active': {
-        color: '#fff',
+        color: 'black',
       },
       '& .MuiTableSortLabel-root .MuiTableSortLabel-icon': {
-        color: '#fff',
-        fill: '#fff',
+        color: 'black',
+        fill: 'black',
       },
       '& .MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon': {
-        color: '#fff',
+        color: 'black',
       },
-        '& .css-1umw9bq-MuiSvgIcon-root': {
-        color: '#fff',
+      '& .css-6h9cc6-MuiInputBase-root-MuiInput-root': {
+        backgroundColor: '#fff !important',
+      },
+       '& .css-1umw9bq-MuiSvgIcon-root': {
+        color: '#black',
       }
-      
     },
   },
-
-
   muiTablePaperProps: {
     elevation: 4,
     sx: {
