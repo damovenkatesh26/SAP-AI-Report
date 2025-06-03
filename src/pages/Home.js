@@ -125,103 +125,109 @@ export default function Home() {
 
     return (
         <div>
-            <Paper
-                style={{ padding: 25, maxWidth: 1200, minHeight: 550, margin: "auto" }}
+            {/* <Paper
+                style={{ padding: 25, margin: "auto" }}
                 elevation={3}
-            >
-                <Box sx={{ mb: 3, textAlign: "center" }}>
-                    <h2>SAP Report</h2>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            gap: 2,
-                            mt: 2,
-                            flexWrap: "wrap",
-                        }}
-                    >
-                        <TextField
-                            label="Enter Your Prompt or Keywords"
-                            value={searchText}
-                            onChange={(e) => setSearchText(e.target.value)}
-                            placeholder="Enter Your Prompt or Keywords"
+            > */}
+            <div style={{ padding: "30px" }}>
+                <h2 style={{ textAlign: 'center',margin:"0px" }}>SAP Report</h2>
+                <div style={{ display: 'flex', justifyContent: "space-evenly" }}>
+                    <img src="/sap_logo.png" alt="SAP Logo" style={{ height: 130 }} />
+                    <Box sx={{ mb: 3, textAlign: "center" }}>
+
+                        <Box
                             sx={{
-                                width: 400,
-                                "& .MuiInputBase-root": {
-                                    height: 50,
-                                    borderRadius: "20px",
-                                    backgroundColor: "#fff",
-                                    fontSize: "1rem",
-                                },
-                                "& .MuiInputLabel-root": {
-                                    fontSize: "1rem",
-                                },
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                gap: 2,
+                                mt: 2,
+                                flexWrap: "wrap",
                             }}
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                    fetchData();
-                                }
-                            }}
-                            disabled={loading}
-                        />
-                        <VoiceInput setSearchText={setSearchText} />
-                        <Button
-                            variant="contained"
-                            sx={{ borderRadius: "20px", height: "50px" }}
-                            onClick={fetchData}
-                            disabled={loading}
                         >
-                            {loading ? "Searching..." : "Search"}
-                        </Button>
-                        <IconButton
-                            aria-describedby={id}
-                            onClick={handleFilterClick}
-                            color={Object.values(filters).some((f) => f) ? "primary" : "default"}
-                            size="large"
-                        >
-                            <MoreVertIcon />
-                        </IconButton>
+                            <TextField
+                                label="Enter Your Prompt or Keywords"
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                                placeholder="Enter Your Prompt or Keywords"
+                                sx={{
+                                    width: 400,
+                                    "& .MuiInputBase-root": {
+                                        height: 50,
+                                        borderRadius: "20px",
+                                        backgroundColor: "#fff",
+                                        fontSize: "1rem",
+                                    },
+                                    "& .MuiInputLabel-root": {
+                                        fontSize: "1rem",
+                                    },
+                                }}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        fetchData();
+                                    }
+                                }}
+                                disabled={loading}
+                            />
+                            <VoiceInput setSearchText={setSearchText} />
+                            <Button
+                                variant="contained"
+                                sx={{ borderRadius: "20px", height: "50px" }}
+                                onClick={fetchData}
+                                disabled={loading}
+                            >
+                                {loading ? "Searching..." : "Search"}
+                            </Button>
+                            <IconButton
+                                aria-describedby={id}
+                                onClick={handleFilterClick}
+                                color={Object.values(filters).some((f) => f) ? "primary" : "default"}
+                                size="large"
+                            >
+                                <MoreVertIcon />
+                            </IconButton>
 
-                        <Popover
-                            id={id}
-                            open={open}
-                            anchorEl={anchorEl}
-                            onClose={handleFilterClose}
-                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                        >
-                            <Box sx={{ p: 2, maxWidth: 300 }}>
-                                <Typography variant="h6" gutterBottom>
-                                    Filters
-                                </Typography>
-                                {columns.length === 0 ? (
-                                    <Typography>No data to filter</Typography>
-                                ) : (
-                                    columns.map((col) => (
-                                        <TextField
-                                            key={col}
-                                            label={`Filter by ${col}`}
-                                            value={filters[col] || ""}
-                                            onChange={(e) => handleFilterChange(col, e.target.value)}
-                                            size="small"
-                                            fullWidth
-                                            sx={{ mb: 1 }}
-                                        />
-                                    ))
-                                )}
-                                <Button
-                                    variant="outlined"
-                                    onClick={() => setFilters({})}
-                                    fullWidth
-                                    size="small"
-                                >
-                                    Clear Filters
-                                </Button>
-                            </Box>
-                        </Popover>
+
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handleFilterClose}
+                                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            >
+                                <Box sx={{ p: 2, maxWidth: 300 }}>
+                                    <Typography variant="h6" gutterBottom>
+                                        Filters
+                                    </Typography>
+                                    {columns.length === 0 ? (
+                                        <Typography>No data to filter</Typography>
+                                    ) : (
+                                        columns.map((col) => (
+                                            <TextField
+                                                key={col}
+                                                label={`Filter by ${col}`}
+                                                value={filters[col] || ""}
+                                                onChange={(e) => handleFilterChange(col, e.target.value)}
+                                                size="small"
+                                                fullWidth
+                                                sx={{ mb: 1 }}
+                                            />
+                                        ))
+                                    )}
+                                    <Button
+                                        variant="outlined"
+                                        onClick={() => setFilters({})}
+                                        fullWidth
+                                        size="small"
+                                    >
+                                        Clear Filters
+                                    </Button>
+                                </Box>
+                            </Popover>
+                        </Box>
                     </Box>
-                </Box>
 
+                </div>
                 {rows.length > 0 ? (
                     <TableContainer
                         component={Paper}
@@ -234,7 +240,11 @@ export default function Home() {
                     >
                         <Table stickyHeader>
                             <TableHead>
-                                <TableRow>
+                                <TableRow
+                                    sx={{
+                                        height: 30, 
+                                    }}
+                                >
                                     {columns.map((col, index) => (
                                         <TableCell
                                             key={col}
@@ -243,6 +253,9 @@ export default function Home() {
                                                 backgroundColor: "#1976d2",
                                                 color: "#fff",
                                                 borderRight: index !== columns.length - 1 ? "1px solid #ccc" : "none",
+                                                padding: "6px 12px", // reduce padding
+                                                fontSize: "0.85rem", // smaller font size
+                                                lineHeight: 1.2,
                                             }}
                                         >
                                             {col.charAt(0).toUpperCase() + col.slice(1)}
@@ -305,7 +318,7 @@ export default function Home() {
                 ) : loading ? (
                     <Typography sx={{ textAlign: "center", mt: 4 }}>Loading...</Typography>
                 ) : null}
-            </Paper>
+            </div>
 
             <Snackbars
                 open={snackbarOpen}
