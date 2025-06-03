@@ -30,7 +30,7 @@ function VoiceInput({ setSearchText }) {
   }
 
   return (
-    <Box sx={{ p: 2 }}>
+    <Box>
       <Tooltip title="Click to speak" arrow>
         <IconButton
           onClick={handleMicClick}
