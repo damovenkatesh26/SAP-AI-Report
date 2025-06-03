@@ -165,7 +165,7 @@ export default function Home() {
                             }}
                             disabled={loading}
                         />
-                        {/* <VoiceInput setSearchText={setSearchText} /> */}
+                        <VoiceInput setSearchText={setSearchText} />
                         <Button
                             variant="contained"
                             sx={{ borderRadius: "20px", height: "50px" }}
