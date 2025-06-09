@@ -33,28 +33,61 @@ export default function Home() {
     [rows]
   );
 
-  const fetchData = async () => {
-    setLoading(true);
-    if (searchText.trim() === "") {
-      showSnackbar("Please fill search value", "error");
-      setLoading(false);
-      return;
-    }
+const fetchData = async () => {
+  setLoading(true);
 
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_BASIC_URL}`);
-      const data = Array.isArray(response.data)
-        ? response.data
-        : response.data.data || [];
-
-      setRows(data);
-      if (response.data.message) showSnackbar(response.data.message, "success");
-    } catch (error) {
-      showSnackbar(error.message || "Error fetching data", "error");
-      setRows([]);
-    }
+  if (searchText.trim() === "") {
+    showSnackbar("Please fill search value", "error");
     setLoading(false);
+    return;
+  }
+
+  const payload = {
+    input_text: searchText,
+    history: [],
   };
+
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_BASIC_URL}`, payload);
+
+    console.log("API Raw Response:", response.data);
+
+    let data = [];
+
+    // Check if response.data.response is a stringified array
+    if (typeof response.data.response === "string") {
+      try {
+        // Replace single quotes with double quotes for JSON validity
+        const fixedJson = response.data.response.replace(/'/g, '"');
+        data = JSON.parse(fixedJson);
+      } catch (parseError) {
+        console.error("JSON parse error:", parseError);
+        showSnackbar("Failed to parse response data", "error");
+      }
+    } else if (Array.isArray(response.data)) {
+      data = response.data;
+    } else if (Array.isArray(response.data.data)) {
+      data = response.data.data;
+    }
+
+    setRows(data);
+
+    if (response.data.message) {
+      showSnackbar(response.data.message, "success");
+    }
+  } catch (error) {
+    console.error("Fetch error:", error);
+    showSnackbar(
+      error?.response?.data?.message || error.message || "Error fetching data",
+      "error"
+    );
+    setRows([]);
+  }
+
+  setLoading(false);
+};
+
+
 
   const showSnackbar = (message, severity = "success") => {
     setSnackbarMessage(message);

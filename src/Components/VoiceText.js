@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { Box, Typography, IconButton, Paper, Tooltip } from '@mui/material';
+import { Box, Typography, IconButton, Tooltip } from '@mui/material';
 import MicIcon from '@mui/icons-material/Mic';
 
 function VoiceInput({ setSearchText }) {
