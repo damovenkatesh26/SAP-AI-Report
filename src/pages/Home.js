@@ -43,8 +43,8 @@ const fetchData = async () => {
   }
 
   const payload = {
-    input_text: searchText,
-    history: [],
+    question: searchText,
+    body: "",
   };
 
   try {
@@ -56,14 +56,6 @@ const fetchData = async () => {
 
     // Check if response.data.response is a stringified array
     if (typeof response.data.response === "string") {
-      try {
-        // Replace single quotes with double quotes for JSON validity
-        const fixedJson = response.data.response.replace(/'/g, '"');
-        data = JSON.parse(fixedJson);
-      } catch (parseError) {
-        console.error("JSON parse error:", parseError);
-        showSnackbar("Failed to parse response data", "error");
-      }
     } else if (Array.isArray(response.data)) {
       data = response.data;
     } else if (Array.isArray(response.data.data)) {
