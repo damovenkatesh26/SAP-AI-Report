@@ -148,7 +148,7 @@ const table = useMaterialReactTable({
 
       <div style={{ padding: "25px" }}>
         <Box sx={{ textAlign: "center" }}>
-          <h2 style={{ margin: "0px",marginRight:"150px" }}>AI Report System</h2>
+          <h2 style={{ margin: "0px",marginRight:"150px" }}>AI & Analytics Engine</h2>
           <Box
             sx={{
               display: "flex",
