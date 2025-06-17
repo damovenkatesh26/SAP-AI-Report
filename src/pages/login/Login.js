@@ -23,7 +23,7 @@ const LoginPage = () => {
 
       if (username === process.env.REACT_APP_USERNAME && password === process.env.REACT_APP_PASSWORD) {
        localStorage.setItem('username', process.env.REACT_APP_USERNAME);
-        navigate('/dashbord');
+        navigate('/');
       } else {
         setErrorMsg('Login failed. Invalid credentials.');
       }

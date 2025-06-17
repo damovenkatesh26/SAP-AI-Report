@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route
-          path="/dashbord"
+          path="/"
           element={
             <ProtectedRoute>
               <Home />
