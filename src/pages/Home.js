@@ -1,4 +1,3 @@
-// pages/Home.jsx
 import React, { useState } from 'react';
 import {
   Tabs,
@@ -40,31 +39,29 @@ function Home() {
     <Box sx={{ width: '100%' }}>
       <AppBar position="static" color="default" elevation={1}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          {/* Left side: Logo + Tabs */}
+          {/* Left side: Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            {/* SAP Logo */}
-            <Box sx={{ display: 'flex', alignItems: 'center', pr: 2 }}>
-              <img src="/sap_logo.png" alt="SAP Logo" style={{ height: 40 }} />
-            </Box>
+            <img src="/sap_logo.png" alt="SAP Logo" style={{ height: 40 }} />
+          </Box>
 
-            {/* Navigation Tabs */}
+          {/* Right side: Tabs + Account Menu */}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Tabs
               value={tabIndex}
               onChange={handleTabChange}
               aria-label="Main Tabs"
               textColor="primary"
               indicatorColor="primary"
+              sx={{ mr: 2 }}
             >
               <Tab label="Dashboard" sx={{ fontWeight: 'bold' }} />
               <Tab label="SAP Report" sx={{ fontWeight: 'bold' }} />
             </Tabs>
-          </Box>
 
-          {/* Right side: Account menu */}
-          <Box>
             <IconButton onClick={handleProfileClick} size="large" color="inherit">
               <AccountCircle />
             </IconButton>
+
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
